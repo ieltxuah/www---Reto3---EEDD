@@ -56,12 +56,8 @@ public class Cliente extends Usuarios {
 
 
 	/// METODOS ///
-	public void generarCodEmpleado() {
-		this.socio = (int) (Math.random() * 9999) + 1;
-		System.out.println("Código de empleado generado: " + this.socio);
-	}
-
 	public Trabajador changeTypeUser(int cod_ss) {
+		int empleado = generarCod();
 		Trabajador nuevoTrabajador = new Trabajador(codigo, dni, nombre, telefono, correo, usuario, contraseña, penalizacion, empleado, cod_ss);
 		return nuevoTrabajador;
 	}

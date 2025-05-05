@@ -2,7 +2,7 @@ package bibliotecaMuskiz;
 
 import java.util.Objects;
 
-public class Autores implements ObtenerDatos {
+public class Autores implements ObtenerDatos, GeneradorCodigos {
 	private int codigo;
 	private String nombre;
 	private String apellido;
@@ -16,10 +16,34 @@ public class Autores implements ObtenerDatos {
 		this.apellido = apellido;
 		this.pais = pais;
 	}
+	
+	public Autores(String nombre, String apellido, Paises pais) {
+		super();
+		this.codigo = generarCod();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.pais = pais;
+	}
+	
+	public Autores(String nombre, String apellido) {
+		super();
+		this.codigo = generarCod();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.pais = null;
+	}
 
 	public Autores(int codigo, String nombre) {
 		super();
 		this.codigo = codigo;
+		this.nombre = nombre;
+		this.apellido = "";
+		this.pais = null; 
+	}
+	
+	public Autores(String nombre) {
+		super();
+		this.codigo = generarCod();
 		this.nombre = nombre;
 		this.apellido = "";
 		this.pais = null; 
@@ -116,6 +140,12 @@ public class Autores implements ObtenerDatos {
         } else {
         	System.out.println("Hola, soy " + nombre + " " + apellido + " y mi código es " + codigo + ".");
         }
+	}
+
+	@Override
+	public int generarCod() {
+		int cod = (int) (Math.random() * 99999) + 1; 
+		return cod;
 	}
 
 }

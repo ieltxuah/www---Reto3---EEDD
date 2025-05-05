@@ -2,7 +2,7 @@ package bibliotecaMuskiz;
 
 import java.util.Objects;
 
-public class Usuarios implements ObtenerDatos {
+public class Usuarios implements ObtenerDatos, GeneradorCodigos {
 	protected int codigo;
 	protected String dni;
 	protected String nombre;
@@ -24,6 +24,19 @@ public class Usuarios implements ObtenerDatos {
 		this.usuario = usuario;
 		this.contraseña = contraseña;
 		this.penalizacion = penalizacion; 
+	}
+	
+	public Usuarios(String dni, String nombre, int telefono, String correo, String usuario,
+			String contraseña) {
+		super();
+		this.codigo = generarCod();
+		this.dni = dni;
+		this.nombre = nombre;
+		this.telefono = telefono;
+		this.correo = correo;
+		this.usuario = usuario;
+		this.contraseña = contraseña;
+		this.penalizacion = null; 
 	}
 
 	
@@ -182,6 +195,13 @@ public class Usuarios implements ObtenerDatos {
         } else {
             System.out.println("No tengo ninguna penalización.");
         }
+	}
+
+
+	@Override
+	public int generarCod() {
+		int cod = (int) (Math.random() * 9999999) + 1; 
+		return cod;
 	}
 
 }

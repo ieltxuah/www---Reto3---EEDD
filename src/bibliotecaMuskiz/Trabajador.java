@@ -78,6 +78,7 @@ public class Trabajador extends Usuarios {
 	}
 	
 	public Cliente changeTypeUser() {
+		int socio = generarCod();
 		Cliente nuevoCliente = new Cliente(codigo, dni, nombre, telefono, correo, usuario, contraseña, penalizacion, socio);
 		return nuevoCliente;
 	}

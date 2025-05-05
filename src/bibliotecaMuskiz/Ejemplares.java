@@ -2,7 +2,7 @@ package bibliotecaMuskiz;
 
 import java.util.Objects;
 
-public class Ejemplares {
+public class Ejemplares implements GeneradorCodigos {
 	private int codigo;
 	private Libros libro;
 	private Estados estado;
@@ -14,10 +14,17 @@ public class Ejemplares {
 		this.libro = libro;
 		this.estado = estado;
 	}
+	
+	public Ejemplares(Libros libro) {
+		super();
+		this.codigo = generarCod();
+		this.libro = libro;
+		this.estado = null;
+	}
 
 	public Ejemplares() {
 		super();
-		this.codigo = 0;
+		this.codigo = generarCod();
 		this.libro = null;
 		this.estado = null;
 	}
@@ -87,5 +94,12 @@ public class Ejemplares {
 			return false;
 		Ejemplares other = (Ejemplares) obj;
 		return codigo == other.codigo && Objects.equals(estado, other.estado) && Objects.equals(libro, other.libro);
+	}
+
+	/// METODOS ///
+	@Override
+	public int generarCod() {
+		int cod = (int) (Math.random() * 999999999) + 1; 
+		return cod;
 	}
 }

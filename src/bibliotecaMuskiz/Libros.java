@@ -3,7 +3,7 @@ package bibliotecaMuskiz;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Libros implements ObtenerDatos {
+public class Libros implements ObtenerDatos, GeneradorCodigos {
 	private int codigo;
 	private int isbn;
 	private String titulo;
@@ -18,9 +18,25 @@ public class Libros implements ObtenerDatos {
 		this.valoracion = valoracion;
 	}
 	
+	public Libros(int isbn, String titulo, int valoracion) {
+		super();
+		this.codigo = generarCod();
+		this.isbn = isbn;
+		this.titulo = titulo;
+		this.valoracion = valoracion;
+	}
+	
 	public Libros(int codigo, int isbn, String titulo) {
 		super();
 		this.codigo = codigo;
+		this.isbn = isbn;
+		this.titulo = titulo;
+		this.valoracion = 0;
+	}
+	
+	public Libros(int isbn, String titulo) {
+		super();
+		this.codigo = generarCod();
 		this.isbn = isbn;
 		this.titulo = titulo;
 		this.valoracion = 0;
@@ -124,6 +140,12 @@ public class Libros implements ObtenerDatos {
 	@Override
 	public void introducirse() {
 		System.out.println("¡Hola! Soy '" + titulo + "', el libro que te transportará a mundos desconocidos. He recibido una valoración de " + valoracion + " estrellas. ¿Estás listo para sumergirte en mi historia?");
+	}
+
+	@Override
+	public int generarCod() {
+		int cod = (int) (Math.random() * 9999999) + 1; 
+		return cod;
 	}
 	
 }

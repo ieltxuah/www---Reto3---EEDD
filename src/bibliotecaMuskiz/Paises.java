@@ -2,7 +2,7 @@ package bibliotecaMuskiz;
 
 import java.util.Objects;
 
-public class Paises implements ObtenerDatos {
+public class Paises implements ObtenerDatos, GeneradorCodigos {
 	private int codigo;
 	private String nombre;
 	
@@ -10,6 +10,12 @@ public class Paises implements ObtenerDatos {
 	public Paises(int codigo, String nombre) {
 		super();
 		this.codigo = codigo;
+		this.nombre = nombre;
+	}
+	
+	public Paises(String nombre) {
+		super();
+		this.codigo = generarCod();
 		this.nombre = nombre;
 	}
 	
@@ -71,5 +77,11 @@ public class Paises implements ObtenerDatos {
 	@Override
 	public void introducirse() {
 		System.out.println("Hola, soy " + nombre + " y mi código es " + codigo + ".");
+	}
+
+	@Override
+	public int generarCod() {
+		int cod = (int) (Math.random() * 999) + 1; 
+		return cod;
 	}
 }
