@@ -2,7 +2,7 @@ package bibliotecaMuskiz;
 
 import java.util.Objects;
 
-public class Estados implements ObtenerDatos {
+public class Estados {
 	private int codigo;
 	private String nombre;
 	
@@ -72,18 +72,6 @@ public class Estados implements ObtenerDatos {
 			return false;
 		Estados other = (Estados) obj;
 		return codigo == other.codigo && Objects.equals(nombre, other.nombre);
-	}
-	
-	//// METODOS ////
-	@Override
-	public void obtenerNombre() {
-		System.out.println("El estado del libro es "+nombre);
-	}
-
-	@Override
-	public void obtenerCodigo() {
-		// TODO Auto-generated method stub
-		System.out.println("El codigo del estado es "+codigo);
 	}
 	
 }
