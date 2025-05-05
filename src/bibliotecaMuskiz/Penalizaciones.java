@@ -2,11 +2,10 @@ package bibliotecaMuskiz;
 
 import java.util.Objects;
 
-public class Penalizaciones implements ObtenerDatos{
+public class Penalizaciones{
 	private int codigo;
 	private String nombre;
 	private int libros_permitidos;
-	
 	
 	
 	//// CONSTRUCTORES ////
@@ -93,26 +92,5 @@ public class Penalizaciones implements ObtenerDatos{
 		return codigo == other.codigo && libros_permitidos == other.libros_permitidos
 				&& Objects.equals(nombre, other.nombre);
 	}
-	
-	//// METODOS ////
-	public void modificarPermitido(int libros_permitidos) {
-		this.libros_permitidos = libros_permitidos;
-		System.out.println("Cambiados los libros permitidos a "+libros_permitidos);
-	}
-
-	@Override
-	public void obtenerNombre() {
-		// TODO Auto-generated method stub
-		System.out.println("El nombre de la penalizacion es "+nombre+" y el numero de libros permitidos es de "+libros_permitidos);
-	}
-
-	@Override
-	public void obtenerCodigo() {
-		// TODO Auto-generated method stub
-		System.out.println("El codigo de la penalizacion es "+codigo);
-	}
-	
-	
-	
 	
 }
