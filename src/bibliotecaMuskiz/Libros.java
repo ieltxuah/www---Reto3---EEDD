@@ -1,5 +1,6 @@
 package bibliotecaMuskiz;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Libros implements ObtenerDatos {
@@ -108,21 +109,21 @@ public class Libros implements ObtenerDatos {
 	}
 	
 	/// METODOS ///
-	public void modificarValoracion(int valoracion) {
-		this.valoracion = valoracion;
-		System.out.println("Valoración cambiada");
+	public static double calcularMediaValoracion(ArrayList<Libros> libros) {
+	    if (libros.isEmpty()) {
+	        System.out.println("No hay libros disponibles para calcular la media.");
+	        return 0;
+	    }
+	    double suma = 0;
+	    for (Libros libro : libros) {
+	        suma += libro.getValoracion();
+	    }
+	    return suma / libros.size();
 	}
 
 	@Override
-	public void obtenerNombre() {
-		// TODO Auto-generated method stub
-		System.out.println("El nombre del libro es "+titulo);
+	public void introducirse() {
+		System.out.println("¡Hola! Soy '" + titulo + "', el libro que te transportará a mundos desconocidos. He recibido una valoración de " + valoracion + " estrellas. ¿Estás listo para sumergirte en mi historia?");
 	}
-
-	@Override
-	public void obtenerCodigo() {
-		// TODO Auto-generated method stub
-		System.out.println("El codigo del libro es "+isbn);
-	}
-
+	
 }
