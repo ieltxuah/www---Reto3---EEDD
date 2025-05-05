@@ -8,8 +8,8 @@ public class Trabajador extends Usuarios {
 	
 	/// CONSTRUCTORES ///
 	public Trabajador(int codigo, String dni, String nombre, int telefono, String correo, String usuario,
-			String contraseña, int empleado, int cod_ss) {
-		super(codigo, dni, nombre, telefono, correo, usuario, contraseña);
+			String contraseña, Penalizaciones penalizacion, int empleado, int cod_ss) {
+		super(codigo, dni, nombre, telefono, correo, usuario, contraseña, penalizacion);
 		this.empleado = empleado;
 		this.cod_ss = cod_ss;
 	}
@@ -70,28 +70,16 @@ public class Trabajador extends Usuarios {
 		return cod_ss == other.cod_ss && empleado == other.empleado;
 	}
 
+
 	/// METODOS ///
-	@Override
-	public void obtenerNombre() {
-		// TODO Auto-generated method stub
-		System.out.println("El nombre del empleado es "+nombre);
-	}
-
-	@Override
-	public void obtenerCodigo() {
-		// TODO Auto-generated method stub
-		System.out.println("El codigo del empleado es "+codigo);
-	}
-
-	@Override
-	public void saludar() {
-		// TODO Auto-generated method stub
-		System.out.println("Buenas, yo soy "+nombre+" y soy el empleado numero "+empleado);
+	public void generarCodEmpleado() {
+		this.empleado = (int) (Math.random() * 9999) + 1;
+		System.out.println("Código de empleado generado: " + this.empleado);
 	}
 	
-	public void cambiarSS(int cod_ss) {
-		this.cod_ss = cod_ss;
-		System.out.println("Se ha cambiado el codigo de seguridad social correctamente");
+	public Cliente changeTypeUser() {
+		Cliente nuevoCliente = new Cliente(codigo, dni, nombre, telefono, correo, usuario, contraseña, penalizacion, socio);
+		return nuevoCliente;
 	}
-
+	
 }

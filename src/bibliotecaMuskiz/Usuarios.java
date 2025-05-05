@@ -2,7 +2,7 @@ package bibliotecaMuskiz;
 
 import java.util.Objects;
 
-public abstract class Usuarios implements ObtenerDatos {
+public class Usuarios implements ObtenerDatos {
 	protected int codigo;
 	protected String dni;
 	protected String nombre;
@@ -10,35 +10,11 @@ public abstract class Usuarios implements ObtenerDatos {
 	protected String correo;
 	protected String usuario;
 	protected String contraseña;
-	
-	
-	///// METODOS /////
-	public void cambiarTelf(int telefono) {
-		this.telefono = telefono;
-		System.out.println("Se ha cambiado el telefono correctamente a "+telefono);
-	}
-	
-	public void cambiarCorreo(String correo) {
-		this.correo = correo;
-		System.out.println("Se ha cambiado el correo correctamente a "+correo);
-	}
-	
-	public void cambiarUser(String usuario) {
-		this.usuario = usuario;
-		System.out.println("Se ha cambiado el usuario correctamente a "+usuario);
-	}
-	
-	public void cambiarPass(String contraseña) {
-		this.contraseña = contraseña;
-		System.out.println("Se ha cambiado la contraseña correctamente");
-	}
-	
-	public abstract void saludar();
-	
+	protected Penalizaciones penalizacion;
 	
 	/////CONSTRUCTORES/////
 	public Usuarios(int codigo, String dni, String nombre, int telefono, String correo, String usuario,
-			String contraseña) {
+			String contraseña, Penalizaciones penalizacion) {
 		super();
 		this.codigo = codigo;
 		this.dni = dni;
@@ -47,6 +23,7 @@ public abstract class Usuarios implements ObtenerDatos {
 		this.correo = correo;
 		this.usuario = usuario;
 		this.contraseña = contraseña;
+		this.penalizacion = penalizacion; 
 	}
 
 	
@@ -149,18 +126,34 @@ public abstract class Usuarios implements ObtenerDatos {
 		this.contraseña = contraseña;
 	}
 
+	/**
+	 * @return the penalizacion
+	 */
+	public Penalizaciones getPenalizacion() {
+		return penalizacion;
+	}
+
+
+	/**
+	 * @param penalizacion the penalizacion to set
+	 */
+	public void setPenalizacion(Penalizaciones penalizacion) {
+		this.penalizacion = penalizacion;
+	}
+
+
 	///// TOSTRING /////
 	@Override
 	public String toString() {
 		return "Usuarios [codigo=" + codigo + ", dni=" + dni + ", nombre=" + nombre + ", telefono=" + telefono
-				+ ", correo=" + correo + ", usuario=" + usuario + ", contraseña=" + contraseña + "]";
+				+ ", correo=" + correo + ", usuario=" + usuario + ", penalizacion=" + penalizacion + "]";
 	}
 
 	
 	///// HASCODE & EQUALS /////
 	@Override
 	public int hashCode() {
-		return Objects.hash(codigo, contraseña, correo, dni, nombre, telefono, usuario);
+		return Objects.hash(codigo, contraseña, correo, dni, nombre, telefono, usuario, penalizacion);
 	}
 
 	@Override
@@ -175,9 +168,20 @@ public abstract class Usuarios implements ObtenerDatos {
 		return codigo == other.codigo && Objects.equals(contraseña, other.contraseña)
 				&& Objects.equals(correo, other.correo) && Objects.equals(dni, other.dni)
 				&& Objects.equals(nombre, other.nombre) && telefono == other.telefono
-				&& Objects.equals(usuario, other.usuario);
+				&& Objects.equals(usuario, other.usuario) && Objects.equals(penalizacion, other.penalizacion);
 	}
 	
 	
-	
+	///// METODOS /////
+	public void introducirse() {
+		System.out.println("Hola, soy " + nombre + ". Mi teléfono es " + telefono +
+                ", mi correo es " + correo + ", y mi nombre de usuario es " + usuario + ".");
+		if (penalizacion != null) {
+            System.out.println("Tengo una penalización: " + penalizacion.getNombre() + " con " 
+            		+ penalizacion.getLibros_permitidos() + " libros permitidos.");
+        } else {
+            System.out.println("No tengo ninguna penalización.");
+        }
+	}
+
 }

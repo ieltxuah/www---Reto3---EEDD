@@ -7,8 +7,8 @@ public class Cliente extends Usuarios {
 	
 	/// CONSTRUCTORES ///
 	public Cliente(int codigo, String dni, String nombre, int telefono, String correo, String usuario,
-			String contraseña, int socio) {
-		super(codigo, dni, nombre, telefono, correo, usuario, contraseña);
+			String contraseña, Penalizaciones penalizacion, int socio) {
+		super(codigo, dni, nombre, telefono, correo, usuario, contraseña, penalizacion);
 		this.socio = socio;
 	}
 	
@@ -54,24 +54,16 @@ public class Cliente extends Usuarios {
 		return socio == other.socio;
 	}
 
+
 	/// METODOS ///
-	@Override
-	public void obtenerNombre() {
-		// TODO Auto-generated method stub
-		System.out.println("El nombre del cliente es "+nombre);
+	public void generarCodEmpleado() {
+		this.socio = (int) (Math.random() * 9999) + 1;
+		System.out.println("Código de empleado generado: " + this.socio);
 	}
 
-	@Override
-	public void obtenerCodigo() {
-		// TODO Auto-generated method stub
-		System.out.println("El codigo del cliente es "+codigo);
-
-	}
-
-	@Override
-	public void saludar() {
-		// TODO Auto-generated method stub
-		System.out.println("Buenas, yo soy "+nombre+" y soy el socio numero "+socio);
+	public Trabajador changeTypeUser(int cod_ss) {
+		Trabajador nuevoTrabajador = new Trabajador(codigo, dni, nombre, telefono, correo, usuario, contraseña, penalizacion, empleado, cod_ss);
+		return nuevoTrabajador;
 	}
 
 }
